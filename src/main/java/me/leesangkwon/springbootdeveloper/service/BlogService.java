@@ -6,6 +6,8 @@ import me.leesangkwon.springbootdeveloper.dto.AddArticleRequest;
 import me.leesangkwon.springbootdeveloper.repository.BlogRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service // 빈으로 등록
 public class BlogService {
@@ -19,5 +21,9 @@ public class BlogService {
     //블로그 글 추가하는 메서드
     public Article save(AddArticleRequest request) {
         return blogRepository.save(request.toEntity());
+    }
+
+    public List<Article> findAll() {
+        return blogRepository.findAll();
     }
 }
