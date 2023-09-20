@@ -46,4 +46,9 @@ public class Article {
 //    public String getContent() {
 //        return content;
 //    } -> @Getter로 대체
+
+    public void update(String title, String content) {
+        this.title = title;
+        this.content = content;
+    }
 }

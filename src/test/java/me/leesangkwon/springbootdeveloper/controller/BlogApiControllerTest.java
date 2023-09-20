@@ -3,6 +3,7 @@ package me.leesangkwon.springbootdeveloper.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.leesangkwon.springbootdeveloper.domain.Article;
 import me.leesangkwon.springbootdeveloper.dto.AddArticleRequest;
+import me.leesangkwon.springbootdeveloper.dto.UpdateArticleRequest;
 import me.leesangkwon.springbootdeveloper.repository.BlogRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -140,5 +141,36 @@ class BlogApiControllerTest {
         List<Article> articles = blogRepository.findAll();
 
         Assertions.assertThat(articles).isEmpty();
+    }
+
+    @DisplayName("updateArticle: 블로그 글 수정에 성공한다.")
+    @Test
+    public void updateArticle() throws Exception {
+        //given
+        final String url = "/api/articles/{id}";
+        final String title = "title";
+        final String content = "content";
+
+        Article savedArticle = blogRepository.save(Article.builder()
+                .content(content)
+                .title(title)
+                .build());
+
+        final String newTitle = "new title";
+        final String newContent = "new content";
+
+        UpdateArticleRequest request = new UpdateArticleRequest(newTitle, newContent);
+
+        //when
+        ResultActions result = mockMvc.perform(put(url, savedArticle.getId())
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(objectMapper.writeValueAsString(request)));
+
+        //then
+        result.andExpect(status().isOk());
+
+        Article article = blogRepository.findById(savedArticle.getId()).get();
+        Assertions.assertThat(article.getTitle()).isEqualTo(newTitle);
+        Assertions.assertThat(article.getContent()).isEqualTo(newContent);
     }
 }
