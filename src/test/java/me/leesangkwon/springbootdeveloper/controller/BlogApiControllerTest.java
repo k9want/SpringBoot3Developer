@@ -1,6 +1,5 @@
 package me.leesangkwon.springbootdeveloper.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import me.leesangkwon.springbootdeveloper.domain.Article;
 import me.leesangkwon.springbootdeveloper.dto.AddArticleRequest;
