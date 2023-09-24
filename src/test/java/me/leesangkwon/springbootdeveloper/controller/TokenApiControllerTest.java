@@ -8,7 +8,6 @@ import me.leesangkwon.springbootdeveloper.domain.User;
 import me.leesangkwon.springbootdeveloper.dto.CreateAccessTokenRequest;
 import me.leesangkwon.springbootdeveloper.repository.RefreshTokenRepository;
 import me.leesangkwon.springbootdeveloper.repository.UserRepository;
-import me.leesangkwon.springbootdeveloper.service.RefreshTokenService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
